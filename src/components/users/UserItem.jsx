@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function UserItem({user: {login, avatar_url}}) {
   return (
-    <div className="card shadow-md compact side bg-base-100">
+    <div className="card shadow-lg compact side bg-neutral-focus text-base-200">
       <div className="flex-row items-center space-x-4 card-body">
         <div>
           <div className="avatar">
@@ -15,8 +15,8 @@ function UserItem({user: {login, avatar_url}}) {
         <div>
           <h2 className="card-title">{login}</h2>
           <Link
-            className="text-base-content text-opacity-40"
-            to={`/user/${login}`}
+            className="text-primary text-opacity-40 "
+            to={`/users/${login}`}
           >
             Visit Profile
           </Link>
