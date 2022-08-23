@@ -36,8 +36,7 @@ export const GithubProvider = ({children}) => {
       },
     });
     const data = await response.json();
-    console.log(data);
-    dispatch({type: 'SET_SEARCH_USERS', payload: data.items});
+    dispatch({type: 'GET_SEARCH_USERS', payload: data.items});
   };
   // Set Loading
   const setLoading = () => {
