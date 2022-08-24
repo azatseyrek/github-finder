@@ -24,7 +24,7 @@ const ThemeSetter = () => {
   return (
     <div>
       <button
-        className="active:scale-90 hover:text-primary hover:scale-110 text-xl"
+        className="active:scale-90 transition-all hover:text-primary hover:scale-110 text-xl"
         onClick={handleThemeChange}
       >
         {selectedTheme === 'dark' ? <FiSun /> : <BsMoonFill />}

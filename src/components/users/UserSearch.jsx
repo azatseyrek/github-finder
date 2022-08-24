@@ -35,14 +35,14 @@ const UserSearch = () => {
             <div className="relative">
               <input
                 type="text"
-                className="w-full text-primary pr-40 bg-gray-200 input input-lg  border-none rounded-r-xl focus:outline focus:outline-2 focus:outline-offset-8 focus:outline-primary"
+                className="w-full text-primary-focus text-lg font-semibold pr-40 bg-neutral bg-opacity-30 input input-lg  border-none rounded-r-xl focus:outline focus:outline-2 focus:outline-offset-8 focus:outline-primary placeholder-secondary-content placeholder-opacity-30"
                 placeholder="Search for a user"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
               <button
                 type="submit"
-                className="absolute top-o right-0 rounded-l-none w-36 btn btn-lg border-black transition-colors hover:text-primary hover: shadow-2xl"
+                className="absolute bg-neutral-focus top-o right-0 rounded-l-none w-36 btn btn-lg hover:text-primary active:no-animation "
               >
                 Go
               </button>
@@ -50,13 +50,13 @@ const UserSearch = () => {
           </div>
         </form>
       </div>
-      {users.length !== 0 && (
+      {(localUsers || users.length > 0) && (
         <div>
           <button
             onClick={handleClear}
             className="btn btn-ghost btn-lg text-primary "
           >
-            Claer
+            Clear
           </button>
         </div>
       )}

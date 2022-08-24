@@ -43,8 +43,8 @@ export const GithubProvider = ({children}) => {
   };
   // Clear Users
   const clearUsers = () => {
-    dispatch({type: 'CLEAR_USERS'});
     localStorage.removeItem('users');
+    dispatch({type: 'CLEAR_USERS'});
   };
   return (
     <GithubContext.Provider

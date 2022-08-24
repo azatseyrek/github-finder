@@ -8,7 +8,6 @@ import NotFound from './Pages/NotFound';
 import {GithubProvider} from './context/github/GithubContext';
 import {AlertProvider} from './context/alert/AlertContext';
 import User from './Pages/User';
-import {themeSwitcher} from './utils/themeSwitcher';
 
 function App() {
   return (
