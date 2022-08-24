@@ -4,9 +4,11 @@ import Spinner from '../Spinner';
 import UserItem from './UserItem';
 
 const UserResults = () => {
-  const {users, loading} = useContext(GithubContext);
+  const {loading} = useContext(GithubContext);
 
-  console.log(users);
+  const localUsers = localStorage.getItem('users');
+
+  const users = JSON.parse(localUsers);
 
   if (loading) {
     return (

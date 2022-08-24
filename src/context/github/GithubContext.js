@@ -8,6 +8,7 @@ const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
 export const GithubProvider = ({children}) => {
   const initialState = {
+    user: {},
     users: [],
     loading: false,
   };
@@ -23,7 +24,19 @@ export const GithubProvider = ({children}) => {
     });
     const data = await response.json();
     dispatch({type: 'GET_SEARCH_USERS', payload: data.items});
+    localStorage.setItem('users', JSON.stringify(data.items));
   };
+  const fetchUser = async (username) => {
+    setLoading();
+    const response = await fetch(`${GIHUB_URL}/users/${username}`, {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+      },
+    });
+    const data = await response.json();
+    dispatch({type: 'GET_USER', payload: data});
+  };
+
   // Set Loading
   const setLoading = () => {
     dispatch({type: 'SET_LOADING'});
@@ -31,6 +44,7 @@ export const GithubProvider = ({children}) => {
   // Clear Users
   const clearUsers = () => {
     dispatch({type: 'CLEAR_USERS'});
+    localStorage.removeItem('users');
   };
   return (
     <GithubContext.Provider
@@ -39,6 +53,8 @@ export const GithubProvider = ({children}) => {
         loading: state.loading,
         clearUsers,
         fetchSearchUsers,
+        fetchUser,
+        user: state.user,
       }}
     >
       {children}

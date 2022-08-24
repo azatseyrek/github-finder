@@ -4,9 +4,11 @@ import GithubContext from '../../context/github/GithubContext';
 
 const UserSearch = () => {
   const [text, setText] = useState('');
-
+  const {loading} = useContext(GithubContext);
   const {clearUsers, users, fetchSearchUsers} = useContext(GithubContext);
   const {setAlert} = useContext(AlertContext);
+
+  const localUsers = JSON.parse(localStorage.getItem('users'));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +23,9 @@ const UserSearch = () => {
   const handleClear = () => {
     clearUsers();
   };
+  if (loading) {
+    return;
+  }
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 mb-8 gap-8 ">
@@ -30,14 +35,14 @@ const UserSearch = () => {
             <div className="relative">
               <input
                 type="text"
-                className="w-full pr-40 bg-gray-200 input input-lg text-black "
+                className="w-full text-primary pr-40 bg-gray-200 input input-lg  border-none rounded-r-xl focus:outline focus:outline-2 focus:outline-offset-8 focus:outline-primary"
                 placeholder="Search for a user"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
               <button
                 type="submit"
-                className="absolute top-o right-0 rounded-l-none w-36 btn btn-lg"
+                className="absolute top-o right-0 rounded-l-none w-36 btn btn-lg border-black transition-colors hover:text-primary hover: shadow-2xl"
               >
                 Go
               </button>
@@ -49,7 +54,7 @@ const UserSearch = () => {
         <div>
           <button
             onClick={handleClear}
-            className="btn btn-ghost btn-lg text-secondary-focus "
+            className="btn btn-ghost btn-lg text-primary "
           >
             Claer
           </button>
