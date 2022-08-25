@@ -33,8 +33,13 @@ export const GithubProvider = ({children}) => {
         Authorization: `token ${GITHUB_TOKEN}`,
       },
     });
-    const data = await response.json();
-    dispatch({type: 'GET_USER', payload: data});
+    if (response.status === 404) {
+      window.location = '/notfound';
+    }else {
+      const data = await response.json();
+      dispatch({type: 'GET_USER', payload: data});
+    }
+ 
   };
 
   // Set Loading
