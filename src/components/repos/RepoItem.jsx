@@ -20,20 +20,24 @@ function RepoItem({repo}) {
         <h3 className="mb-2 text-xl font-semibold">
           <a href={html_url}>
             <FaLink className="inline mr-1" /> {name}
+            {language && (
+              <>
+                <span className="ml-4">/</span>
+                <div className="mr-2 ml-4 badge badge-md badge-accent">
+                  {language}
+                </div>
+              </>
+            )}
           </a>
         </h3>
         <p className="mb-3">{description}</p>
-        <div>
+        <div className="opacity-50">
           <div className="mr-2 badge badge-primary badge-lg">
             <FaEye className="mr-2" /> {watchers_count}
           </div>
           <div className="mr-2 badge badge-secondary badge-lg">
             <FaStar className="mr-2" /> {stargazers_count}
           </div>
-
-          {language && (
-            <div className="mr-2 badge badge-gray-500 badge-lg">{language}</div>
-          )}
         </div>
       </div>
     </div>
